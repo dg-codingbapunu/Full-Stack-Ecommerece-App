@@ -37,7 +37,7 @@ app.use(
   })
 );
 
-app.use(express.static(path.join(__dirname, "./client/ecom/dist")));
+app.use(express.static(path.join(__dirname, "/client/ecom/dist")));
 
 //  routes
 
@@ -54,7 +54,7 @@ app.get("/", (req, res) => {
 // rest api
 
 app.use("*", function (req, res) {
-  res.sendFile(path.join(__dirname, "./client/ecom/dist/index.html"));
+  res.sendFile(path.join(__dirname, "/client/ecom/dist/index.html"));
 });
 
 const PORT = process.env.PORT || 8080;
