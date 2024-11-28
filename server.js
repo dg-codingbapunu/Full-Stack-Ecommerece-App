@@ -7,48 +7,56 @@ import categoryRoutes from "./routes/categoryRoutes.js";
 import productRoutes from "./routes/productRoutes.js";
 import cors from "cors";
 import path from "path";
-import { fileURLToPath } from "url"; // Import required for ES module paths
+import { fileURLToPath } from "url";
 
 dotenv.config();
 
-// database config
+// database congig
+
 connectDB();
 
+// es module
+const __filename = fileURLToPath(import.meta.url);
+
+const __dirname = path.dirname(__filename);
+
 // rest object---
+
 const app = express();
 
-// middlewares
+// midlewares
+
 app.use(express.json());
 app.use(morgan("dev"));
 app.use(
   cors({
     origin: "http://localhost:5173", // Frontend URL
     methods: ["GET", "POST", "PUT", "DELETE"], // Allowed methods
-    credentials: true, // Include credentials (if needed)
+    // Include credentials (if needed)
+    credentials: true,
   })
 );
 
-// routes
+app.use(express.static(path.join(__dirname, "./client/ecom/dist")));
+
+//  routes
+
 app.use("/api/v1/auth", authRoutes);
 app.use("/api/v1/category", categoryRoutes);
 app.use("/api/v1/product", productRoutes);
 
-// rest --- api
+//  rest --- api
+
 app.get("/", (req, res) => {
   res.send("hello welcome to my app");
 });
 
-// Static files
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename); // Derive the directory name
+// rest api
 
-app.use(express.static(path.join(__dirname, "./client/ecom/dist")));
-app.get("*", function (req, res) {
+app.use("*", function (req, res) {
   res.sendFile(path.join(__dirname, "./client/ecom/dist/index.html"));
 });
 
 const PORT = process.env.PORT || 8080;
 
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
-});
+app.listen(PORT, () => {});
