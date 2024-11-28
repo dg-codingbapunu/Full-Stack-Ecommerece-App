@@ -6,6 +6,7 @@ import authRoutes from "./routes/authRoute.js";
 import categoryRoutes from "./routes/categoryRoutes.js";
 import productRoutes from "./routes/productRoutes.js";
 import cors from "cors";
+import path from "path";
 
 dotenv.config();
 
@@ -42,8 +43,12 @@ app.get("/", (req, res) => {
   res.send("hello welcome to my app");
 });
 
+// Static files
+
+app.use(express.static(path.join(__dirname, "./client/ecom/dist")));
+app.get("*", function (req, res) {
+  res.sendFile(path.join(__dirname, "./client/ecom/dist/index.html"));
+});
 const PORT = process.env.PORT || 8080;
 
-app.listen(PORT, () => {
-  console.log(`Server Running on port ${PORT}`);
-});
+app.listen(PORT, () => {});
