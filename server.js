@@ -6,8 +6,6 @@ import authRoutes from "./routes/authRoute.js";
 import categoryRoutes from "./routes/categoryRoutes.js";
 import productRoutes from "./routes/productRoutes.js";
 import cors from "cors";
-import path from "path";
-import { fileURLToPath } from "url";
 
 dotenv.config();
 
@@ -16,9 +14,6 @@ dotenv.config();
 connectDB();
 
 // es module
-const __filename = fileURLToPath(import.meta.url);
-
-const __dirname = path.dirname(__filename);
 
 // rest object---
 
@@ -37,8 +32,6 @@ app.use(
   })
 );
 
-app.use(express.static(path.join(__dirname, "/client/ecom/dist")));
-
 //  routes
 
 app.use("/api/v1/auth", authRoutes);
@@ -52,10 +45,6 @@ app.get("/", (req, res) => {
 });
 
 // rest api
-
-app.use("*", function (req, res) {
-  res.sendFile(path.join(__dirname, "/client/ecom/dist/index.html"));
-});
 
 const PORT = process.env.PORT || 8080;
 
