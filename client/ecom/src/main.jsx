@@ -11,7 +11,9 @@ createRoot(document.getElementById("root")).render(
   <AuthProvider>
     <SearchProvider>
       <CartProvider>
-        <BrowserRouter>
+        <BrowserRouter
+          futureFlags={["v7_startTransition", "v7_relativeSplatPath"]}
+        >
           <App />
         </BrowserRouter>
       </CartProvider>

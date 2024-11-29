@@ -7,7 +7,7 @@ export default defineConfig({
   server: {
     proxy: {
       "/api": {
-        target: "https://shopzone-backend-rtvb.onrender.com", // Backend server
+        target: "http://localhost:8080", // Backend server
         changeOrigin: true, // Changes the origin of the host header to the target URL
         secure: false, // If using HTTPS without a valid certificate
       },

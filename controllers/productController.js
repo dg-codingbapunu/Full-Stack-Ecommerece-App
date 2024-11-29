@@ -6,6 +6,7 @@ import slugify from "slugify";
 
 import braintree from "braintree";
 import orderModel from "../models/orderModel.js";
+import mongoose from "mongoose";
 
 // Payment getway
 dotenv.config();
@@ -108,19 +109,52 @@ export const getSingleProductController = async (req, res) => {
 };
 
 // get photo
+
 export const productPhotoController = async (req, res) => {
+  const { pid } = req.params;
+
+  // Validate product ID format
+  if (!pid || !mongoose.Types.ObjectId.isValid(pid)) {
+    return res.status(400).json({
+      success: false,
+      message: "Invalid Product ID format",
+    });
+  }
+
   try {
-    const product = await productModel.findById(req.params.pid).select("photo");
-    if (product.photo.data) {
-      res.set("Content-type", product.photo.contentType);
+    // Find product by ID and select only the photo field
+    const product = await productModel.findById(pid).select("photo");
+
+    // If the product is not found, return a 404
+    if (!product) {
+      return res.status(404).json({
+        success: false,
+        message: "Product not found",
+      });
+    }
+
+    // Check if the product has a photo field with data
+    if (product.photo?.data) {
+      // Set the appropriate content type for the image
+      res.set("Content-Type", product.photo.contentType);
+      // Send the image data
       return res.status(200).send(product.photo.data);
+    } else {
+      // If no photo is found, return a 404
+      return res.status(404).json({
+        success: false,
+        message: "No photo available for the given product",
+      });
     }
   } catch (error) {
-    console.log(error);
-    res.status(500).send({
+    // Log the error for debugging
+    console.error("Error fetching product photo:", error);
+
+    // Return a 500 server error with the error message
+    return res.status(500).json({
       success: false,
-      message: "Erorr while getting photo",
-      error,
+      message: "Error fetching product photo",
+      error: error.message,
     });
   }
 };

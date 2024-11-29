@@ -1,13 +1,12 @@
 import React from "react";
-import Layout from "../components/Layout/Layout";
-
+import Layout from "../components/layout/Layout";
 const About = () => {
   return (
     <Layout title={"About - Shopzone"}>
       <div className="row contactus ">
         <div className="col-md-6 ">
           <img
-            src="https://github.com/techinfo-youtube/ecommerce-app-2023/blob/15-admin-orders-css/client/public/images/about.jpeg?raw=true"
+            src="images/about.jpeg"
             alt="contactus"
             style={{ width: "100%" }}
           />

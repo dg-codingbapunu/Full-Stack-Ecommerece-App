@@ -13,11 +13,12 @@ const ProductDetails = () => {
   const [relatedProducts, setRelatedProducts] = useState([]);
   const [cart, setCart] = useCart();
 
-  //initalp details
+  // Fetch product details
   useEffect(() => {
     if (params?.slug) getProduct();
   }, [params?.slug]);
-  //getProduct
+
+  // Get product details
   const getProduct = async () => {
     try {
       const { data } = await axios.get(
@@ -29,7 +30,8 @@ const ProductDetails = () => {
       console.log(error);
     }
   };
-  //get similar product
+
+  // Get similar products
   const getSimilarProduct = async (pid, cid) => {
     try {
       const { data } = await axios.get(
@@ -40,6 +42,7 @@ const ProductDetails = () => {
       console.log(error);
     }
   };
+
   return (
     <Layout>
       <div className="row container product-details">
@@ -49,24 +52,24 @@ const ProductDetails = () => {
             className="card-img-top"
             alt={product.name}
             height="300"
-            width={"350px"}
+            width="350px"
           />
         </div>
         <div className="col-md-6 product-details-info">
           <h1 className="text-center">Product Details</h1>
           <hr />
-          <h6>Name : {product.name}</h6>
-          <h6>Description : {product.description}</h6>
+          <h6>Name: {product.name}</h6>
+          <h6>Description: {product.description}</h6>
           <h6>
-            Price :
+            Price:{" "}
             {product?.price?.toLocaleString("en-US", {
               style: "currency",
               currency: "USD",
             })}
           </h6>
-          <h6>Category : {product?.category?.name}</h6>
+          <h6>Category: {product?.category?.name}</h6>
           <button
-            class="btn btn-secondary ms-1"
+            className="btn btn-secondary ms-1"
             onClick={() => {
               setCart([...cart, product]);
               localStorage.setItem("cart", JSON.stringify([...cart, product]));
@@ -77,6 +80,7 @@ const ProductDetails = () => {
           </button>
         </div>
       </div>
+
       <hr />
       <div className="row container similar-products">
         <h4>Similar Products ➡️</h4>
@@ -101,9 +105,7 @@ const ProductDetails = () => {
                     })}
                   </h5>
                 </div>
-                <p className="card-text ">
-                  {p.description.substring(0, 60)}...
-                </p>
+                <p className="card-text">{p.description.substring(0, 60)}...</p>
                 <div className="card-name-price">
                   <button
                     className="btn btn-info ms-1"
@@ -135,19 +137,3 @@ const ProductDetails = () => {
 };
 
 export default ProductDetails;
-
-{
-  //   /* <button
-  // className="btn btn-dark ms-1"
-  // onClick={() => {
-  //   setCart([...cart, p]);
-  //   localStorage.setItem(
-  //     "cart",
-  //     JSON.stringify([...cart, p])
-  //   );
-  //   toast.success("Item Added to cart");
-  // }}
-  // //
-  // ADD TO CART
-  // </button> */
-}

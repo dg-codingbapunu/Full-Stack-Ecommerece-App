@@ -6,10 +6,12 @@ import SearchInput from "../form/SearchInput";
 import useCategory from "../hooks/useCategory";
 import { useCart } from "../../context/cart";
 import { Badge } from "antd";
+
 const Headers = () => {
   const [auth, setAuth] = useAuth();
   const [cart] = useCart();
   const categories = useCategory();
+
   const handleLogout = () => {
     setAuth({
       ...auth,
@@ -62,7 +64,9 @@ const Headers = () => {
                     </Link>
                   </li>
                   {categories?.map((c) => (
-                    <li>
+                    <li key={c.slug}>
+                      {" "}
+                      {/* Add key here */}
                       <Link
                         className="dropdown-item"
                         to={`/category/${c.slug}`}
