@@ -25,7 +25,7 @@ app.use(express.json());
 app.use(morgan("dev"));
 app.use(
   cors({
-    origin: "https://mern-frontend-liart.vercel.app/", // Frontend URL
+    origin: "http://localhost:5173", // Frontend URL
     methods: ["GET", "POST", "PUT", "DELETE"], // Allowed methods
     // Include credentials (if needed)
     credentials: true,

@@ -7,9 +7,9 @@ export default defineConfig({
   server: {
     proxy: {
       "/api": {
-        target: "https://full-stack-ecommerece-backend.vercel.app/", // Backend server
+        target: "http://localhost:8080", // Backend server
         changeOrigin: true, // Changes the origin of the host header to the target URL
-        secure: false, // If using HTTPS without a valid certificate
+        secure: true, // If using HTTPS without a valid certificate
       },
     },
   },
