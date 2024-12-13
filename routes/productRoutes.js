@@ -1,7 +1,6 @@
 import express from "express";
 import {
   brainTreePaymentController,
-  braintreePaymentController,
   braintreeTokenController,
   createProductController,
   deleteProductController,
@@ -9,7 +8,6 @@ import {
   getSingleProductController,
   productCategoryController,
   productCountController,
-  productFilterController,
   productFiltersController,
   productListController,
   productPhotoController,
