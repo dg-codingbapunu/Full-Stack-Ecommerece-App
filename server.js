@@ -23,14 +23,7 @@ const app = express();
 
 app.use(express.json());
 app.use(morgan("dev"));
-app.use(
-  cors({
-    origin: "http://localhost:5173", // Frontend URL
-    methods: ["GET", "POST", "PUT", "DELETE"], // Allowed methods
-    // Include credentials (if needed)
-    credentials: true,
-  })
-);
+app.use(cors());
 
 //  routes
 

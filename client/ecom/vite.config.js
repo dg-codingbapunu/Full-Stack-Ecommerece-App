@@ -10,9 +10,9 @@ export default defineConfig({
   server: {
     proxy: {
       "/api": {
-        target: "https://patitapaban-ecommerce.onrender.com", // Backend server
+        target: "http://localhost:8080", // Corrected the URL
         changeOrigin: true, // Changes the origin of the host header to the target URL
-        secure: true, // If the backend uses HTTPS with an invalid certificate
+        secure: false, // If the backend uses HTTPS with an invalid certificate
       },
     },
   },
