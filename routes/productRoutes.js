@@ -13,7 +13,6 @@ import {
   productPhotoController,
   realtedProductController,
   searchProductController,
-  similarProductController,
   updateProductController,
 } from "../controllers/productController.js";
 import { isAdmin, requireSignIn } from "../middlewares/authMiddleware.js";
