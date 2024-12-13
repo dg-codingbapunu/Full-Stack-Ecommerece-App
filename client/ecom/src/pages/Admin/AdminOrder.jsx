@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import AdminMenu from "../../components/layout/AdminMenu.jsx";
-import Layout from "../../components/Layout/Layout.jsx";
+import Layout from "../../components/layout/Layout.jsx";
 import { useAuth } from "../../context/Auth";
 import moment from "moment";
 import axios from "axios";
@@ -35,9 +35,12 @@ const AdminOrder = () => {
 
   const handleChange = async (orderId, value) => {
     try {
-      const { data } = axios.put(`/api/v1/auth/order-status/${orderId}`, {
-        status: value,
-      });
+      const { data } = axios.put(
+        `https://willowy-dusk-76c5a8.netlify.app/api/v1/auth/order-status/${orderId}`,
+        {
+          status: value,
+        }
+      );
       getOrders();
     } catch (error) {
       console.log(error);

@@ -5,7 +5,7 @@ import { Prices } from "../components/Prices";
 import { useCart } from "../context/cart";
 import axios from "axios";
 import toast from "react-hot-toast";
-import Layout from "./../components/Layout/Layout";
+import Layout from "../components/layout/Layout";
 import { AiOutlineReload } from "react-icons/ai";
 import "../styles/Homepage.css";
 
@@ -23,7 +23,9 @@ const HomePage = () => {
   // Get all categories
   const getAllCategory = async () => {
     try {
-      const { data } = await axios.get("/api/v1/category/get-category");
+      const { data } = await axios.get(
+        "https://willowy-dusk-76c5a8.netlify.app/api/v1/category/get-category"
+      );
       if (data?.success) {
         setCategories(data?.category);
       }
@@ -41,7 +43,9 @@ const HomePage = () => {
   const getAllProducts = async () => {
     try {
       setLoading(true);
-      const { data } = await axios.get(`/api/v1/product/product-list/${page}`);
+      const { data } = await axios.get(
+        `https://willowy-dusk-76c5a8.netlify.app/api/v1/product/product-list/${page}`
+      );
       setLoading(false);
       setProducts(data.products);
     } catch (error) {
@@ -53,7 +57,9 @@ const HomePage = () => {
   // Get total count of products
   const getTotal = async () => {
     try {
-      const { data } = await axios.get("/api/v1/product/product-count");
+      const { data } = await axios.get(
+        "https://willowy-dusk-76c5a8.netlify.app/api/v1/product/product-count"
+      );
       setTotal(data?.total);
     } catch (error) {
       console.log(error);
@@ -69,7 +75,9 @@ const HomePage = () => {
   const loadMore = async () => {
     try {
       setLoading(true);
-      const { data } = await axios.get(`/api/v1/product/product-list/${page}`);
+      const { data } = await axios.get(
+        `https://willowy-dusk-76c5a8.netlify.app/api/v1/product/product-list/${page}`
+      );
       setLoading(false);
       setProducts([...products, ...data?.products]);
     } catch (error) {
@@ -100,10 +108,13 @@ const HomePage = () => {
   // Get filtered products
   const filterProduct = async () => {
     try {
-      const { data } = await axios.post("/api/v1/product/product-filters", {
-        checked,
-        radio,
-      });
+      const { data } = await axios.post(
+        "https://willowy-dusk-76c5a8.netlify.app/api/v1/product/product-filters",
+        {
+          checked,
+          radio,
+        }
+      );
       setProducts(data?.products);
     } catch (error) {
       console.log(error);
@@ -163,7 +174,7 @@ const HomePage = () => {
                 <div className="card m-2" key={p._id}>
                   {p._id ? (
                     <img
-                      src={`/api/v1/product/product-photo/${p._id}`}
+                      src={`https://willowy-dusk-76c5a8.netlify.app/api/v1/product/product-photo/${p._id}`}
                       className="card-img-top"
                       alt={p.name}
                     />

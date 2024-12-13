@@ -52,7 +52,7 @@ const CreateProduct = () => {
       productData.append("category", category);
 
       const { data } = await axios.post(
-        "/api/v1/product/create-product",
+        "https://willowy-dusk-76c5a8.netlify.app/api/v1/product/create-product",
         productData
       );
       if (data?.success) {

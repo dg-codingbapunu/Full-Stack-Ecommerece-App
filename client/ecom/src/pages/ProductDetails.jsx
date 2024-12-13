@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import Layout from "./../components/Layout/Layout";
+import Layout from "../components/layout/Layout";
 import axios from "axios";
 import { useParams, useNavigate } from "react-router-dom";
 import "../styles/ProductDetailsStyles.css";
@@ -22,7 +22,7 @@ const ProductDetails = () => {
   const getProduct = async () => {
     try {
       const { data } = await axios.get(
-        `/api/v1/product/get-product/${params.slug}`
+        `https://willowy-dusk-76c5a8.netlify.app/api/v1/product/get-product/${params.slug}`
       );
       setProduct(data?.product);
       getSimilarProduct(data?.product._id, data?.product.category._id);

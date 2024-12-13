@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import UserMenu from "../../components/Layout/UserMenu";
+import UserMenu from "../../components/layout/UserMenu";
 import Layout from "../../components/layout/Layout";
 import { useAuth } from "../../context/Auth";
 import toast from "react-hot-toast";
@@ -34,13 +34,16 @@ const Profile = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const { data } = await axios.put("/api/v1/auth/profile", {
-        name,
-        email,
-        password,
-        phone,
-        address,
-      });
+      const { data } = await axios.put(
+        "https://willowy-dusk-76c5a8.netlify.app/api/v1/auth/profile",
+        {
+          name,
+          email,
+          password,
+          phone,
+          address,
+        }
+      );
 
       if (data?.error) {
         toast.error(data?.error);

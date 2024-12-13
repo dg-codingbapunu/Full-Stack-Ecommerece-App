@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import UserMenu from "../../components/layout/UserMenu";
-import Layout from "./../../components/Layout/Layout";
+import Layout from "../../components/layout/Layout";
 import axios from "axios";
 import { useAuth } from "../../context/Auth";
 import moment from "moment";
@@ -10,7 +10,9 @@ const Orders = () => {
   const [auth, setAuth] = useAuth();
   const getOrders = async () => {
     try {
-      const { data } = await axios.get("/api/v1/auth/orders");
+      const { data } = await axios.get(
+        "https://willowy-dusk-76c5a8.netlify.app/api/v1/auth/orders"
+      );
       setOrders(data);
     } catch (error) {
       console.log(error);
