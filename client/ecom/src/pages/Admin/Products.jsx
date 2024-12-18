@@ -11,9 +11,7 @@ const Products = () => {
   //getall products
   const getAllProducts = async () => {
     try {
-      const { data } = await axios.get(
-        "https://willowy-dusk-76c5a8.netlify.app/api/v1/product/get-product"
-      );
+      const { data } = await axios.get("/api/v1/product/get-product");
       setProducts(data.products);
     } catch (error) {
       console.log(error);

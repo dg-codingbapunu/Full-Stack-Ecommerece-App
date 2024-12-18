@@ -15,10 +15,11 @@ const ForgotPassword = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post(
-        "https://willowy-dusk-76c5a8.netlify.app/api/v1/auth/forgot-password",
-        { email, question, newPassword }
-      );
+      const res = await axios.post("/api/v1/auth/forgot-password", {
+        email,
+        question,
+        newPassword,
+      });
 
       if (res.data.success) {
         toast.success(res.data.message);

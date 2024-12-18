@@ -79,7 +79,7 @@ const UpdateProduct = () => {
       productData.append("category", category);
 
       const { data } = await axios.put(
-        `https://willowy-dusk-76c5a8.netlify.app/api/v1/product/update-product/${id}`,
+        `/api/v1/product/update-product/${id}`,
         productData
       );
       if (data?.success) {

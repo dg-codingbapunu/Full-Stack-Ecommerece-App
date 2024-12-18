@@ -35,12 +35,9 @@ const AdminOrder = () => {
 
   const handleChange = async (orderId, value) => {
     try {
-      const { data } = axios.put(
-        `https://willowy-dusk-76c5a8.netlify.app/api/v1/auth/order-status/${orderId}`,
-        {
-          status: value,
-        }
-      );
+      const { data } = axios.put(`/api/v1/auth/order-status/${orderId}`, {
+        status: value,
+      });
       getOrders();
     } catch (error) {
       console.log(error);

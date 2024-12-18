@@ -19,12 +19,9 @@ const Category = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const { data } = await axios.post(
-        "https://willowy-dusk-76c5a8.netlify.app/api/v1/category/create-category",
-        {
-          name,
-        }
-      );
+      const { data } = await axios.post("/api/v1/category/create-category", {
+        name,
+      });
 
       if (data?.success) {
         toast.success(data.message);

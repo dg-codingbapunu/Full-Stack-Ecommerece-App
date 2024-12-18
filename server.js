@@ -23,10 +23,9 @@ const app = express();
 
 app.use(express.json());
 app.use(morgan("dev"));
-const cors = require("cors");
 app.use(
   cors({
-    origin: "https://willowy-dusk-76c5a8.netlify.app",
+    origin: "http://localhost:5173",
   })
 );
 

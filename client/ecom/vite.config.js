@@ -10,7 +10,7 @@ export default defineConfig({
   server: {
     proxy: {
       "/api": {
-        target: "https://patitapaban-shopzone-app.onrender.com/", // Corrected the URL
+        target: "http://localhost:8080", // Corrected the URL
         changeOrigin: true, // Changes the origin of the host header to the target URL
         secure: false, // If the backend uses HTTPS with an invalid certificate
       },

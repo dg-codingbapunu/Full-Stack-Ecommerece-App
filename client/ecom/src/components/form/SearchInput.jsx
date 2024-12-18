@@ -11,7 +11,7 @@ const SearchInput = () => {
     e.preventDefault();
     try {
       const { data } = await axios.get(
-        `https://willowy-dusk-76c5a8.netlify.app/api/v1/product/search/${values.keyword}`
+        `/api/v1/product/search/${values.keyword}`
       );
       setValues({ ...values, result: data });
       navigate("/search");

@@ -19,10 +19,7 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post(
-        "https://willowy-dusk-76c5a8.netlify.app/api/v1/auth/login",
-        { email, password }
-      );
+      const res = await axios.post("/api/v1/auth/login", { email, password });
 
       if (res.data.success) {
         toast.success(res.data.message);
