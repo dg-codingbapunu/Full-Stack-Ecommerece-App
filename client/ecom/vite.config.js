@@ -4,15 +4,15 @@ import react from "@vitejs/plugin-react";
 // https://vite.dev/config/
 export default defineConfig({
   build: {
-    outDir: "dist", // Ensures the output directory is correctly set
+    outDir: "dist", // Output directory for production build
   },
   plugins: [react()],
   server: {
     proxy: {
       "/api": {
-        target: "http://localhost:8080", // Corrected the URL
-        changeOrigin: true, // Changes the origin of the host header to the target URL
-        secure: false, // If the backend uses HTTPS with an invalid certificate
+        target: "http://localhost:8080", // Ensure this matches your backend port
+        changeOrigin: true, // Needed for CORS and proper headers
+        secure: false, // Set false for HTTP (not HTTPS)
       },
     },
   },

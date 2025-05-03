@@ -7,42 +7,37 @@ import categoryRoutes from "./routes/categoryRoutes.js";
 import productRoutes from "./routes/productRoutes.js";
 import cors from "cors";
 
+// Load environment variables
 dotenv.config();
 
-// database congig
-
+// Connect to the database
 connectDB();
 
-// es module
-
-// rest object---
-
+// Initialize express app
 const app = express();
 
-// midlewares
-
+// Middlewares
 app.use(express.json());
 app.use(morgan("dev"));
 app.use(
   cors({
-    origin: "http://localhost:5173",
+    origin: "http://localhost:5173", // Allow requests from your frontend
+    credentials: true,
   })
 );
 
-//  routes
-
+// Routes
 app.use("/api/v1/auth", authRoutes);
 app.use("/api/v1/category", categoryRoutes);
 app.use("/api/v1/product", productRoutes);
 
-//  rest --- api
-
+// Root test route
 app.get("/", (req, res) => {
-  res.send("hello welcome to my app");
+  res.send("Hello, welcome to my app!");
 });
 
-// rest api
-
+// Start server
 const PORT = process.env.PORT || 8080;
-
-app.listen(PORT, () => {});
+app.listen(PORT, () => {
+  console.log(`✅ Server is running on http://localhost:${PORT}`);
+});
